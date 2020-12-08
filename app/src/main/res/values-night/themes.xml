@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Zy_client_android" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorAccent</item>
+        <item name="colorOnPrimary">@color/colorPrimaryDark</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/color_main_theme</item>
+        <item name="colorSecondaryVariant">@color/color_main_theme</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.AlphaActivity" parent="Theme.Zy_client_android">
+        <item name="android:windowAnimationStyle">@style/alphaActivityAnim</item>
+    </style>
+
+    <style name="Theme.ScaleActivity" parent="Theme.Zy_client_android">
+        <item name="android:windowAnimationStyle">@style/scaleActivityAnim</item>
+    </style>
+
+</resources>
