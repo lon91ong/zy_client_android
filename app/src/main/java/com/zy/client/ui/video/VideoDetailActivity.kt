@@ -20,6 +20,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
+import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -39,6 +40,7 @@ import com.zy.client.database.CollectModel
 import com.zy.client.database.SourceDBUtils
 import com.zy.client.http.ConfigManager
 import com.zy.client.http.NetRepository
+import com.zy.client.utils.NoShakeClickListener
 import com.zy.client.utils.NotchUtils
 import com.zy.client.utils.Utils
 import com.zy.client.utils.ext.*
@@ -60,7 +62,6 @@ class VideoDetailActivity : BaseMediaActivity() {
     private lateinit var playerWebContainer: FrameLayout
     private lateinit var videoContainer: FrameLayout
     private lateinit var statusView: LoaderLayout
-    private lateinit var llAnthology: LinearLayout
     private lateinit var tvCurPlayName: TextView
     private lateinit var ivPlayMore: ImageView
     private lateinit var ivWebPlay: ImageView
@@ -90,7 +91,6 @@ class VideoDetailActivity : BaseMediaActivity() {
 
         statusView = findViewById(R.id.statusView)
         statusView.setLoadState(LoadState.LOADING)
-        llAnthology = findViewById(R.id.llAnthology)
         tvCurPlayName = findViewById(R.id.tvCurPlayName)
         ivPlayMore = findViewById(R.id.ivPlayMore)
         ivWebPlay = findViewById(R.id.ivWebPlay)
@@ -155,29 +155,32 @@ class VideoDetailActivity : BaseMediaActivity() {
             (screenHeight - resources.getDimensionPixelSize(VIDEO_VIEW_HEIGHT))
                 .minus(if (isNotchScreen) 0 else Utils.getStatusBarHeight())
 
-        llAnthology.setOnClickListener {
-            if (mVideoList?.size ?: 0 > 1) {
-                mSelectListDialog?.dismiss()
-                mSelectListDialog = null
+        tvCurPlayName.setOnClickListener(object : NoShakeClickListener() {
+            override fun onSingleClick(v: View?) {
+                if (mVideoList?.size ?: 0 > 1) {
+                    mSelectListDialog?.dismiss()
+                    mSelectListDialog = null
 
-                mSelectListDialog = XPopup.Builder(this)
-                    .hasShadowBg(false)
-                    .maxHeight(dialogHeight)
-                    .asBottomList(
-                        "选集",
-                        mVideoList?.map { it.name }?.toTypedArray(),
-                        null,
-                        videoController?.currentListPosition ?: 0 //传0会显示选中的✔号
-                    ) { position, _ ->
-                        videoController?.currentListPosition = position
-                        videoController?.updateVodViewPosition()
-                        playVideo(mVideoList?.get(position))
-                    }
-                    .bindLayout(R.layout.fragment_search_result)
-                mSelectListDialog?.popupInfo
-                mSelectListDialog?.show()
+                    mSelectListDialog = XPopup.Builder(this@VideoDetailActivity)
+                        .hasShadowBg(false)
+                        .maxHeight(dialogHeight)
+                        .asBottomList(
+                            "选集",
+                            mVideoList?.map { it.name }?.toTypedArray(),
+                            null,
+                            videoController?.currentListPosition ?: 0 //传0会显示选中的✔号
+                        ) { position, _ ->
+                            videoController?.currentListPosition = position
+                            videoController?.updateVodViewPosition()
+                            playVideo(mVideoList?.get(position))
+                        }
+                        .bindLayout(R.layout.fragment_search_result)
+                    mSelectListDialog?.popupInfo
+                    mSelectListDialog?.show()
+                }
             }
-        }
+        })
+        ivPlayMore.setOnClickListener { tvCurPlayName.performClick() }
 
         //收藏
         ivCollect.setOnClickListener {

@@ -10,7 +10,7 @@
     <color name="color_main_theme">#FB7299</color>
     <color name="color_main_theme_dark">#FFFB7299</color>
     <color name="color_font_black">#323232</color>
-    <color name="color_font_gray">#A2A2A2</color>
+    <color name="color_font_gray">#888888</color>
     <color name="color_font_gray_light">#C0C0C0</color>
     <color name="color_container_bg">#F4F4F4</color>
     <color name="color_container_bg2">#FAFAFA</color>

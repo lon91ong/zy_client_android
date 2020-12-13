@@ -112,7 +112,7 @@ class HistoryActivity : BaseActivity() {
             } else {
                 statusView.setLoadState(LoadState.SUCCESS)
             }
-            adapter?.setData(it)
+            adapter?.setData(it?.asReversed())
         }
     }
 
