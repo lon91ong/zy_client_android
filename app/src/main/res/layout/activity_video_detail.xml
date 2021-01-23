@@ -128,51 +128,42 @@
                         android:textSize="@dimen/font_15"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.3"
                         app:layout_constraintHorizontal_weight="0.7"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toLeftOf="@id/llAnthology"
+                        app:layout_constraintRight_toLeftOf="@id/tvCurPlayName"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="大内密探" />
 
-                    <LinearLayout
-                        android:id="@+id/llAnthology"
+                    <TextView
+                        android:id="@+id/tvCurPlayName"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
                         android:gravity="top|end"
-                        android:maxWidth="@dimen/dp_50"
-                        android:orientation="horizontal"
-                        android:paddingStart="@dimen/dp_3"
-                        android:paddingEnd="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:textColor="@color/color_font_gray"
+                        android:textSize="@dimen/font_13"
+                        app:layout_constraintBottom_toBottomOf="@id/tvName"
+                        app:layout_constraintHorizontal_bias="1"
                         app:layout_constraintHorizontal_weight="0.3"
                         app:layout_constraintLeft_toRightOf="@id/tvName"
+                        app:layout_constraintRight_toLeftOf="@id/ivPlayMore"
+                        app:layout_constraintTop_toTopOf="@id/tvName"
+                        tools:text="大内密探" />
+
+                    <ImageView
+                        android:id="@+id/ivPlayMore"
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_gravity="center_vertical"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_arrow_right"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@id/tvName"
+                        app:layout_constraintLeft_toRightOf="@id/tvCurPlayName"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvName">
-
-                        <TextView
-                            android:id="@+id/tvCurPlayName"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:ellipsize="marquee"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:gravity="top|end"
-                            android:maxWidth="@dimen/dp_200"
-                            android:focusableInTouchMode="true"
-                            android:textColor="@color/color_font_gray"
-                            android:textSize="@dimen/font_14"
-                            tools:text="大内密探" />
-
-                        <ImageView
-                            android:id="@+id/ivPlayMore"
-                            android:layout_width="@dimen/dp_20"
-                            android:layout_height="@dimen/dp_20"
-                            android:layout_gravity="top|end"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_arrow_right"
-                            android:visibility="invisible" />
-                    </LinearLayout>
+                        app:layout_constraintTop_toTopOf="@id/tvName"
+                        tools:visibility="visible" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView

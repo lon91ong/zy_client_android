@@ -81,7 +81,7 @@ class CollectFragment : BaseListFragment<CollectModel, BaseViewHolder>() {
     override fun loadData(page: Int, callback: (list: List<CollectModel>?) -> Unit) {
         if (page == 1) {
             CollectDBUtils.searchAllAsync {
-                callback.invoke(it)
+                callback.invoke(it?.asReversed())
             }
         } else {
             callback.invoke(arrayListOf())
